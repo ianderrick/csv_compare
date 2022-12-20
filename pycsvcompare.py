@@ -2,25 +2,23 @@
 import tkinter as tk
 import csv
 
-# Define a function that will compare the two CSV files
-# and return a list of differences
+# Define a function that will compare the two CSV files and return a list of differences
 def compare_csv_files(file1, file2):
-    # Open the first CSV file and read its lines
+# Open the first CSV file and read its lines
     with open(file1, 'r') as csvfile1:
         lines1 = csvfile1.readlines()
     
-    # Open the second CSV file and read its lines
+# Open the second CSV file and read its lines
     with open(file2, 'r') as csvfile2:
         lines2 = csvfile2.readlines()
     
-    # Compare the lines in the two files and store the differences
-    # in a list
+# Compare the lines in the two files and store the differences in a list
     differences = []
     for i in range(min(len(lines1), len(lines2))):
         if lines1[i] != lines2[i]:
             differences.append((i+1, lines1[i], lines2[i]))
     
-    # Return the list of differences
+# Return the list of differences
     return differences
 
 # Create the GUI window
@@ -53,17 +51,17 @@ text.pack(side=tk.TOP)
 
 # Define the function that will be called when the button is clicked
 def compare_files():
-    # Get the file names from the entries
+# Get the file names from the entries
     file1 = entry1.get()
     file2 = entry2.get()
     
-    # Compare the files and get the list of differences
+# Compare the files and get the list of differences
     differences = compare_csv_files(file1, file2)
     
-    # Clear the text widget
+# Clear the text widget
     text.delete('1.0', tk.END)
     
-    # Display the differences in the text widget
+# Display the differences in the text widget
     for diff in differences:
         text.insert(tk.END, 'Line {}:\n'.format(diff[0]))
         text.insert(tk.END, '    File 1: {}'.format(diff[1]))
